@@ -5,10 +5,7 @@ import sys
 import math
 
 
-def cylinder():
-    r = float(input("Enter radius: "))
-    h = float(input("Enter height: "))
-
+def cylinder(r, h):
     def circle():
         return math.pi * r * r
 
@@ -23,4 +20,6 @@ def cylinder():
 
 
 if __name__ == '__main__':
-    cylinder()
+    radius = float(input("Enter radius: "))
+    height = float(input("Enter height: "))
+    cylinder(radius, height)
