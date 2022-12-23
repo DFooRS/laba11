@@ -4,19 +4,16 @@
 import sys
 
 
-def add_product(products):
+def add_product():
     prod = input("Введите название товара: ")
     shop = input("Введите название магазина: ")
     cost = float(input("Введите стоимость товара: "))
-    product = {
+
+    return {
         'product': prod,
         'shop': shop,
         'cost': cost
     }
-
-    products.append(product)
-    if len(products) > 1:
-        products.sort(key=lambda item: item.get('shop', ''))
 
 
 def product_list(products):
@@ -47,22 +44,12 @@ def product_list(products):
     print(line)
 
 
-def select(products):
-    sel_shop = input("Введите магазин: ")
-
-    n = 0
+def select(products, shop):
+    result = []
     for product in products:
-        if product.get('shop', '') == sel_shop:
-            print(
-                '| {:^25} | {:^15} | {:^14} |'.format(
-                    product.get('product', ''),
-                    product.get('shop', ''),
-                    product.get('cost', 0)
-                )
-            )
-            n += 1
-    if n == 0:
-        print("Магазин не найден!")
+        if product.get('shop', '') == shop:
+            result.append(product)
+    return result
 
 
 def get_help():
@@ -88,13 +75,18 @@ def main():
             break
 
         elif command == 'add':
-            add_product(products)
+            product = add_product()
+            products.append(product)
+            if len(products) > 1:
+                products.sort(key=lambda item: item.get('shop', ''))
 
         elif command == 'list':
             product_list(products)
 
         elif command == 'select':
-            select(products)
+            sel_shop = input("Введите магазин: ")
+            selected = select(products, sel_shop)
+            product_list(selected)
 
         elif command == 'help':
             get_help()
