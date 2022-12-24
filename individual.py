@@ -5,6 +5,9 @@ import sys
 
 
 def add_product():
+    """
+    Ввод информации о товарах.
+    """
     prod = input("Введите название товара: ")
     shop = input("Введите название магазина: ")
     cost = float(input("Введите стоимость товара: "))
@@ -17,7 +20,9 @@ def add_product():
 
 
 def product_list(products):
-
+    """
+    Вывод списка товаров
+    """
     line = '+-{}-+-{}-+-{}-+'.format(
         '-' * 4,
         '-' * 30,
@@ -45,6 +50,9 @@ def product_list(products):
 
 
 def select(products, shop):
+    """
+    Выбрать товары из конкретного магазина.
+    """
     result = []
     for product in products:
         if product.get('shop', '') == shop:
@@ -66,6 +74,9 @@ def error(command):
 
 
 def main():
+    """
+    Главная функция программы.
+    """
     products = []
 
     while True:
